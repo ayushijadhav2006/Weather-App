@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700;900&display=swap"
+        rel="stylesheet">
+   
+    <link rel="stylesheet" href="future.css">
+    
+    <title>Future Weather</title>
+</head>
+
+<body>
+
+    <nav class="sidenav">
+        <h2>Weather Options</h2>
+        <ul>
+            <li><a href="index.html">Today's Weather</a></li>
+            <li><a href="future.html">Future Weather</a></li>
+            <li><a href="weather-news.html">Weather News</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-container">
+        <section class="container">
+            <div class="search-box">
+                <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                <input type="text" id="city-input" placeholder="Enter your city" aria-label="City">
+                <input type="date" id="date-input" aria-label="Date">
+                <button id="search-button" class="fa-solid fa-magnifying-glass" aria-label="Search"></button>
+            </div>
+
+            <div class="not-found" id="not-found" role="alert" style="display: none;">
+                <img src="images/404.png" alt="Not Found">
+                <p>Oops! Invalid location or date :/</p>
+            </div>
+
+            <div class="weather-box" id="weather-box" style="display:none;"> 
+                <img src="" id="weather-image" alt="Weather Icon">
+                <p class="temperature" id="temperature"></p>
+                <p class="description" id="description"></p>
+            </div>
+
+            <div class="weather-details" id="weather-details" style="display: none;">
+                <div class="humidity">
+                    <i class="fa-solid fa-water" aria-hidden="true"></i>
+                    <div class="text">
+                        <span id="humidity"></span>
+                        <p>Humidity</p>
+                    </div>
+                </div>
+                <div class="wind">
+                    <i class="fa-solid fa-wind" aria-hidden="true"></i>
+                    <div class="text">
+                        <span id="wind-speed"></span>
+                        <p>Wind Speed</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://kit.fontawesome.com/54224c9256.js" crossorigin="anonymous"></script>
+    <script src="future.js"></script>
+</body>
+
+</html>

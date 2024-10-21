@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="weather-news.css"> <!-- Link to the new CSS file -->
+    <title>Weather News</title>
+</head>
+
+<body>
+
+    <div class="sidenav">
+        <h2>Weather Options</h2>
+        <ul>
+            <li><a href="index.html" onclick="showAlert('Navigating to Today\'s Weather')">Today's Weather</a></li>
+            <li><a href="future.html" onclick="showAlert('Navigating to Future Weather')">Future Weather</a></li>
+            <li><a href="weather-news.html" onclick="showAlert('You are already on Weather News')">Weather News</a></li>
+        </ul>
+    </div>
+
+    <div class="main-container">
+        <h1 class="app-title">Weather News</h1>
+        
+        <!-- City Input Field -->
+        <div class="search-box">
+            <input type="text" id="city-input" placeholder="Enter city name" />
+            <button id="search-button" class="fa-solid fa-magnifying-glass" aria-label="Search"></button>
+        </div>
+
+        <!-- Alerts Section -->
+        <div id="alerts-container">
+            <h2>Weather Alerts</h2>
+            <ul id="alerts-list"></ul> <!-- List to display alerts -->
+        </div>
+    </div>
+
+    
+
+    <script>
+        function showAlert(message) {
+            alert(message);
+        }
+    </script>
+
+    <script src="https://kit.fontawesome.com/54224c9256.js" crossorigin="anonymous"></script>
+    <script src="weather-news.js"></script>
+</body>
+
+</html>
