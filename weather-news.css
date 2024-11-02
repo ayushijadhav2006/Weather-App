@@ -186,3 +186,32 @@ h2 {
     text-decoration: none;
     cursor: pointer;
 }
+
+.sidenav {
+    width: 60px;
+    height: 100%;
+    background: #0A4D68;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    transition: width 0.3s ease;
+}
+
+.sidenav h2 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    opacity: 0; /* Hide text initially */
+    transition: opacity 0.3s ease; /* Smooth transition for text */
+}
+
+.sidenav ul {
+    list-style: none;
+    padding: 0;
+    opacity: 0; /* Hide text initially */
+    transition: opacity 0.3s ease; /* Smooth transition for text */
+}
+
+/* Remove hover styles */

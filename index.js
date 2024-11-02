@@ -5,6 +5,7 @@ const weatherDetails = document.querySelector('.weather-details');
 const error404 = document.querySelector('.not-found');
 const widgetContainer = document.getElementById('openweathermap-widget-11'); // Reference to the widget container
 const sidenav = document.querySelector('.sidenav');
+const saveLocationButton = document.querySelector('.save-location'); // Reference to the save button
 
 // Add this function to your existing index.js file
 const toggleButton = document.createElement('button');
@@ -33,6 +34,49 @@ toggleButton.addEventListener('click', () => {
     const cityId = isFuturePage ? json.city.id : json.id; // Get city ID for future weather
     updateWeatherWidget(cityId); // Call to update the widget with new city ID
 });
+
+// Add this function to save the location
+function saveLocation(city) {
+    let savedLocations = JSON.parse(localStorage.getItem('savedLocations')) || [];
+    if (!savedLocations.includes(city)) {
+        savedLocations.push(city);
+        localStorage.setItem('savedLocations', JSON.stringify(savedLocations));
+        updateSavedLocations();
+    }
+}
+
+// Add this function to update the saved locations display
+function updateSavedLocations() {
+    const savedLocationsContainer = document.querySelector('.saved-locations ul');
+    savedLocationsContainer.innerHTML = ''; // Clear existing locations
+    const savedLocations = JSON.parse(localStorage.getItem('savedLocations')) || [];
+    savedLocations.forEach(location => {
+        const locationItem = document.createElement('li');
+        locationItem.textContent = location;
+        locationItem.addEventListener('click', () => {
+            document.querySelector('.search-box input').value = location; // Set input to saved location
+            search.click();
+         } );// Trigger search
+        // Create a delete button
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.classList.add('delete-location'); // Add a class for styling
+        deleteButton.addEventListener('click', () => {
+            deleteLocation(location); // Call the delete function
+        });
+
+        locationItem.appendChild(deleteButton); // Append the delete button to the location item
+        savedLocationsContainer.appendChild(locationItem);
+    });
+}
+
+// Function to delete a saved location
+function deleteLocation(city) {
+    let savedLocations = JSON.parse(localStorage.getItem('savedLocations')) || [];
+    savedLocations = savedLocations.filter(location => location !== city); // Remove the city
+    localStorage.setItem('savedLocations', JSON.stringify(savedLocations)); // Update local storage
+    updateSavedLocations(); // Refresh the displayed list
+}
 
 search.addEventListener('click', () => {
     const city = document.querySelector('.search-box input').value;
@@ -106,6 +150,9 @@ search.addEventListener('click', () => {
         .catch(error => console.error('Error fetching weather data:', error));
 });
 
+// Call this function on page load to display saved locations
+document.addEventListener('DOMContentLoaded', updateSavedLocations);
+
 function getWeatherImage(weatherCondition) {
     switch (weatherCondition) {
         case 'Clear':
@@ -144,10 +191,22 @@ function updateWeatherWidget(cityId) {
     document.body.appendChild(script);
 }
 
-sidenav.addEventListener('mouseenter', () => {
+// Expand the sidenav on mouse over
+sidenav.addEventListener('mouseover', () => {
     sidenav.style.width = '250px'; // Expand on mouse enter
+    sidenav.querySelector('h2').style.opacity = '1'; // Show title
+    sidenav.querySelector('ul').style.opacity = '1'; // Show menu
 });
 
-sidenav.addEventListener('mouseleave', () => {
+// Shrink the sidenav on mouse out
+sidenav.addEventListener('mouseout', () => {
     sidenav.style.width = '60px'; // Shrink on mouse leave
+    sidenav.querySelector('h2').style.opacity = '0'; // Hide title
+    sidenav.querySelector('ul').style.opacity = '0'; // Hide menu
+});
+
+saveLocationButton.addEventListener('click', () => {
+    const city = document.querySelector('.search-box input').value;
+    if (city === '') return; // Do nothing if input is empty
+    saveLocation(city); // Save the location only when button is clicked
 });

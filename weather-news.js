@@ -7,6 +7,21 @@ const modalDescription = document.getElementById('modal-description'); // Get th
 const modalEffective = document.getElementById('modal-effective'); // Get the modal effective date
 const closeModal = document.getElementsByClassName('close')[0]; // Get the close button
 
+// Expand the sidenav on mouse over
+const sidenav = document.querySelector('.sidenav');
+sidenav.addEventListener('mouseover', () => {
+    sidenav.style.width = '250px'; // Expand on mouse enter
+    sidenav.querySelector('h2').style.opacity = '1'; // Show title
+    sidenav.querySelector('ul').style.opacity = '1'; // Show menu
+});
+
+// Shrink the sidenav on mouse out
+sidenav.addEventListener('mouseout', () => {
+    sidenav.style.width = '60px'; // Shrink on mouse leave
+    sidenav.querySelector('h2').style.opacity = '0'; // Hide title
+    sidenav.querySelector('ul').style.opacity = '0'; // Hide menu
+});
+
 searchButton.addEventListener('click', () => {
     const cityName = cityInput.value; // Get the value from the input field
     if (!cityName) {
