@@ -16,7 +16,7 @@ body{
 
 .container{
     position: relative;
-    width: 400px;
+    width: 450px;
     height: 105px;
     background: #fff;
     padding: 28px 32px;
@@ -81,7 +81,7 @@ body{
 
 .search-box input{
     color: #06283D;
-    width: 80%;
+    width: 250px;
     font-size: 24px;
     font-weight: 500;
     text-transform: uppercase;
@@ -97,7 +97,9 @@ body{
 
 .search-box button{
     cursor: pointer;
-    width: 50px;
+    width: 80px;
+    margin: 4px;
+    padding: 12px;
     height: 50px;
     color: #06283D;
     background: #dff6ff;
@@ -124,6 +126,7 @@ body{
 .weather-box img{
     width: 60%;
     margin-top: 30px;
+    height: 200px;
 }
 
 .weather-box .temperature{
